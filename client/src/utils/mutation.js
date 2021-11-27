@@ -1,0 +1,83 @@
+import gql from 'graphql-tag';
+import { loginUser } from './API';
+const { gql } = require('apollo-server-express');
+
+export const LOGIN_USER = gql`
+
+mutation loginUser ($email: String!, $password: String !, $password : String!)
+    login(email: $email, password: $password) {
+        token
+         user{
+            _id
+        }
+    }
+}
+`;
+export const ADD_USER = gql`
+  mutation addUser ($username: String!, $password: String!,$email: String!) {
+    addUser(username: $username, $password: password, $email: email) {
+        user
+        {
+            _id
+            username
+            email
+            bookcount
+            saveBooks {
+                authors
+                bookId
+                image
+                link
+                title
+                description
+            }
+        }
+        token
+    }
+  }
+`;
+
+export const SAVE_BOOK = gql`
+  mutation saveBook ($input: savedBook!) {
+    saveBook(input: $input) {
+        {
+            _id
+            username
+            email
+            bookcount
+            saveBooks {
+                # _id
+                bookId
+                authors
+                image
+                link
+                title
+                description
+            }
+        }
+        
+    }
+  }
+`;
+export const REMOVE_BOOK = gql`
+  mutation removeBook ($input: savedBook!) {
+    removeBook(input: $input) {
+        {
+            _id
+            username
+            email
+            bookcount
+            saveBooks {
+                # _id
+                bookId
+                authors
+                image
+                link
+                title
+                description
+            }
+        }
+        
+    }
+  }
+  `;
+  
